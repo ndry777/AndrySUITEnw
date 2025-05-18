@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AndrySUITE</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: white;
+      color: black;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark-mode {
+      background: #121212;
+      color: white;
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: background 0.3s, opacity 0.3s;
+    }
+    .navbar.scrolled {
+      opacity: 0.9;
+      backdrop-filter: blur(5px);
+    }
+    .navbar.dark-mode {
+      background: #222;
+      color: white;
+    }
+    .brand span {
+      color: red;
+    }
+    .container {
+      padding-top: 80px;
+    }
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .feature-box {
+      width: 300px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      position: relative;
+      transition: transform 0.6s ease, opacity 0.6s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .feature-box.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .feature-box.dark-mode {
+      background: #333;
+      color: white;
+      border-color: #555;
+    }
+    .feature-box img {
+      width: 100%;
+      border-radius: 5px;
+    }
+    .stars {
+      margin: 10px 0;
+      color: gold;
+    }
+    .feature-box a {
+      display: inline-block;
+      color: red;
+      font-weight: bold;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+    .like-container {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+    }
+    .like-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      color: inherit;
+    }
+    .like-btn.liked {
+      color: #D72424;
+    }
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      text-align: center;
+      background: #f1f1f1;
+      transition: background 0.3s, color 0.3s;
+    }
+    footer.dark-mode {
+      background: #222;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="brand">Andry<span>SUITE</span></div>
+    <div class="toggle-btn" onclick="toggleDarkMode()" id="toggle-icon">
+      <i class="fa-solid fa-moon"></i>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="greeting" id="greeting">Selamat pagi</div>
+    <div class="welcome">Selamat Datang di <strong>Andry<span>SUITE</span></strong></div>
+    <div class="fitur-title">Fitur Tersedia</div>
+    <div class="features">
+      <div class="feature-box" id="box1">
+        <div class="terpopuler"><i class="fa-solid fa-fire"></i> Terpopuler</div>
+        <img src="tiktok.jpg" alt="Download TikTok"/>
+        <h3>Unduh Video TikTok</h3>
+        <p>Unduh video TikTok tanpa watermark dengan cepat dan mudah.</p>
+        <div class="stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star-half-stroke"></i>
+        </div>
+        <a href="tiktok.html">Kunjungi</a>
+        <div class="like-container">
+          <button class="like-btn" onclick="toggleLike('like1', this)">
+            <i class="fa-solid fa-thumbs-up"></i> <span id="like1">12457</span>
+          </button>
+        </div>
+      </div>
+      <div class="feature-box" id="box2">
+        <img src="fototopdf.jpg" alt="Ubah ke PDF"/>
+        <h3>Ubah Foto ke PDF</h3>
+        <p>Gabungkan gambar menjadi dokumen PDF dengan mudah.</p>
+        <div class="stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+          <i class="fa-regular fa-star"></i>
+        </div>
+        <a href="fotokepdf.html">Kunjungi</a>
+        <div class="like-container">
+          <button class="like-btn" onclick="toggleLike('like2', this)">
+            <i class="fa-solid fa-thumbs-up"></i> <span id="like2">4123</span>
+          </button>
+        </div>
+      </div>
+      <div class="feature-box" id="box3">
+        <img src="pdftofoto.jpg" alt="PDF ke Foto"/>
+        <h3>Ubah PDF ke Foto</h3>
+        <p>Ubah dokumen PDF menjadi gambar JPG/PNG.</p>
+        <div class="stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star-half-stroke"></i><i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+        </div>
+        <a href="pdfkefoto.html">Kunjungi</a>
+        <div class="like-container">
+          <button class="like-btn" onclick="toggleLike('like3', this)">
+            <i class="fa-solid fa-thumbs-up"></i> <span id="like3">3865</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer id="footer">
+    <p>&copy; 2025 AndrySUITE. Follow kami di:
+      <a href="https://www.instagram.com/andryy78_?igsh=b3c0ejAxN3B1aDg1" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="tiktok.com/@mandryansyah_" target="_blank"><i class="fab fa-tiktok"></i></a>
+    </p>
+  </footer>
+
+  <script>
+    function setGreeting() {
+      const hour = new Date().getHours();
+      let greeting = "Selamat pagi";
+      if (hour >= 12 && hour < 15) greeting = "Selamat siang";
+      else if (hour >= 15 && hour < 18) greeting = "Selamat sore";
+      else if (hour >= 18 || hour < 4) greeting = "Selamat malam";
+      document.getElementById("greeting").textContent = greeting;
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      document.getElementById("navbar").classList.toggle("dark-mode");
+      document.getElementById("footer").classList.toggle("dark-mode");
+      document.querySelectorAll('.feature-box').forEach(box => box.classList.toggle("dark-mode"));
+      const icon = document.getElementById("toggle-icon").children[0];
+      icon.classList.toggle("fa-moon");
+      icon.classList.toggle("fa-sun");
+      sessionStorage.setItem("darkMode", document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
+    }
+
+    function formatLike(n) {
+      return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    function toggleLike(id, btn) {
+      const span = document.getElementById(id);
+      let count = parseInt(span.textContent.replace(/\./g, ''));
+      const key = `${id}-liked`;
+      const liked = sessionStorage.getItem(key) === "true";
+      count = liked ? count - 1 : count + 1;
+      span.textContent = formatLike(count);
+      btn.classList.toggle("liked", !liked);
+      sessionStorage.setItem(key, !liked);
+      sessionStorage.setItem(id, count);
+    }
+
+    function handleScrollEffects() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+
+      document.querySelectorAll('.feature-box').forEach(box => {
+        const boxTop = box.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (boxTop < windowHeight - 50) {
+          box.classList.add('visible');
+        }
+      });
+    }
+
+    window.onload = function () {
+      setGreeting();
+      if (sessionStorage.getItem("darkMode") === "enabled") toggleDarkMode();
+      ['like1', 'like2', 'like3'].forEach(id => {
+        const saved = sessionStorage.getItem(id);
+        const liked = sessionStorage.getItem(`${id}-liked`) === "true";
+        if (saved) document.getElementById(id).textContent = formatLike(parseInt(saved));
+        if (liked) document.querySelector(`[onclick="toggleLike('${id}', this)"]`).classList.add("liked");
+      });
+      handleScrollEffects();
+    };
+
+    window.addEventListener('scroll', handleScrollEffects);
+  </script>
+</body>
+</html>
